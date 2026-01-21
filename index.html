@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Birthday Surprise! 🚀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="global-bg-music" loop hidden>
+        <source src="background.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="bg-container">
+        </div>
+
+    <div id="screen-welcome" class="screen glass-card">
+        <h1>Happy Birthday, <span class="dynamic-name">Champ</span>! 🎉</h1>
+        <p class="subtitle">I have created something epic just for you...</p>
+        
+        <button class="btn-primary pulse-anim" onclick="startJourney()">Open Surprise 🚀</button>
+    </div>
+
+    <div class="bg-container">
+        <div class="bg-item b1">🎈</div><div class="bg-item b2">⚡</div>
+        <div class="bg-item b3">🎂</div><div class="bg-item b4">🎮</div>
+        <div class="bg-item b5">🎁</div><div class="bg-item b6">💙</div>
+        <div class="bg-item b7">🎸</div>
+    </div>
+
+    <div id="creator-screen" class="screen active glass-card">
+        <h1>Create Birthday Wish 🎂</h1>
+        <div class="cake-icon">🍰</div>
+        <p>Enter details to create a magic link!</p>
+        
+        <div class="input-group">
+            <input type="text" id="name-input" placeholder="Birthday Boy's Name" required>
+            <input type="text" id="photo-input" placeholder="Photo Link (Optional)">
+            <small>Tip: Use a direct link ending in .jpg or .png</small>
+        </div>
+
+        <button class="btn-primary" onclick="generateLink()">🎁 Create Magic Link</button>
+        
+        <div id="link-result" class="hidden bounce-in">
+            <p>👇 Copy this link & send it:</p>
+            <textarea id="share-link" readonly onclick="this.select()"></textarea>
+            <button onclick="copyLink()" class="btn-secondary">📋 Copy Link</button>
+        </div>
+    </div>
+
+    <div id="screen-welcome" class="screen glass-card">
+        <div class="photo-frame bounce-in">
+            <img id="user-photo-display" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="User Photo">
+        </div>
+        
+        <h1>Happy Birthday, <span class="dynamic-name">Champ</span>! 🎉</h1>
+        <p class="subtitle">I have created something epic just for you...</p>
+        <button class="btn-primary pulse-anim" onclick="nextScreen('screen-envelope')">Open Surprise 🚀</button>
+    </div>
+
+    <div id="screen-envelope" class="screen">
+        <h2 style="color: #00e5ff; text-shadow: 2px 2px 0px #000; margin-bottom: 20px;">A Letter For You 📩</h2>
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope" id="envelope">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter-preview">
+                    <p>My Dear <span class="dynamic-name">Bro</span>,</p>
+                    <p>Tap to Read...</p>
+                </div>
+                <div class="heart-seal pulse-anim">🔥</div>
+            </div>
+        </div>
+        <p class="hint">Tap the envelope to open!</p>
+    </div>
+
+    <div id="screen-letter" class="screen glass-card slide-up">
+        <div class="sticker-top">👑</div>
+        <h2>To The King,</h2>
+        <div class="letter-content">
+            <p>Another year of being awesome! You bring so much energy and fun into everyone's life.</p>
+            <p><strong>Happy Birthday!</strong> May your year be full of success and adventure. Keep shining, brother!</p>
+        </div>
+        <p class="signature">Best Wishes 💙</p>
+        <button class="btn-primary" onclick="nextScreen('screen-cake')">Continue ✨</button>
+    </div>
+
+    <div id="screen-cake" class="screen glass-card">
+        <h2>It's Cake Time! 🎂</h2>
+        <p>Make a wish first!</p>
+        <div class="cake-container" onclick="cutCake()">
+            <div class="cake-whole">
+                <img src="images/cake.png" alt="Cake"> 
+            </div> 
+            <div class="knife" id="knife">🔪</div>
+        </div>
+        <p id="cake-msg" class="pulse-anim">Tap the cake to cut it! ✂️</p>
+        <button id="cake-next" class="btn-primary hidden" onclick="nextScreen('screen-playlist')">Next Surprise 🎵</button>
+    </div>
+
+    <div id="screen-playlist" class="screen glass-card">
+        <h2>Birthday Vibes 🎧</h2>
+        <div class="music-player">
+            <div class="album-art pulse-anim">💿</div>
+            <h3>"Happy Birthday To You!"</h3>
+            <p>Special Mix just for <span class="dynamic-name">You</span></p>
+            
+            <audio id="bg-music" loop>
+                <source src="mysong.mp3" type="audio/mpeg">
+            </audio>
+
+            <div class="controls">
+                <button onclick="toggleMusic()" class="play-btn">▶️ Play Music</button>
+            </div>
+        </div>
+        <br>
+        <button class="btn-primary" onclick="nextScreen('screen-cards')">See Wishes 🎁</button>
+    </div>
+
+    <div id="screen-cards" class="screen">
+        <h2 style="color: #0d47a1; background: rgba(255,255,255,0.8); padding: 5px; border-radius: 10px; display:inline-block;">Tap Cards to Flip! 🃏</h2>
+        
+        <div class="cards-grid">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card"><span>🚀</span><p>Wish 1</p></div>
+                    <div class="flip-card-back glass-card"><p>Reach for the stars! 🌟</p></div>
+                </div>
+            </div>
+            
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card"><span>😎</span><p>Wish 2</p></div>
+                    <div class="flip-card-back glass-card"><p>Stay cool and awesome! 🧊</p></div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-card"><span>💙</span><p>Wish 3</p></div>
+                    <div class="flip-card-back glass-card"><p>You are a legend! 🏆</p></div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top: 30px;" onclick="nextScreen('screen-final')">Final Message 💌</button>
+    </div>
+
+    <div id="screen-final" class="screen glass-card slide-up">
+        <h1>Happy Birthday <span class="dynamic-name">Bro</span>! 🎉</h1>
+        <p>Hope you liked this digital gift!</p>
+        <div style="font-size: 4rem; margin: 20px 0;" class="pulse-anim">🥳🎁🍺</div>
+        <p>Have a blast!</p>
+        
+        <div class="final-buttons">
+            <button class="btn-primary" onclick="restartExperience()">Experience Again 🔄</button>
+            <button class="btn-secondary send-loves-btn" onclick="sendLoves()">Send Loves ❤️</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
