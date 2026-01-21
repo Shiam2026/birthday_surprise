@@ -218,4 +218,14 @@ p { font-size: 1rem; color: #546e7a; margin-bottom: 20px; line-height: 1.5; font
         transform: translateY(-110vh) rotate(360deg); /* স্ক্রিনের বাইরে চলে যাবে */
         opacity: 0;
     }
+
+}
+
+/* Copyright Text Style */
+.copyright-text {
+    margin-top: 30px;       /* Adds space above the text */
+    font-size: 0.8rem;      /* Makes the font smaller */
+    color: #546e7a;         /* A subtle grey-blue color */
+    font-weight: 600;
+    opacity: 0.7;           /* Makes it slightly transparent */
 }
